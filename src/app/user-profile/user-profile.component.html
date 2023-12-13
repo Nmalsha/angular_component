@@ -1,0 +1,16 @@
+<div class="user-profile">
+  <img src="{{ user.photo }}" alt="User Photo" />
+  <h2>Nom:{{ user.firstName }}</h2>
+  <h2>Prénom: {{ user.name }}</h2>
+  <p *ngIf="showAge">Age: {{ user.age }}</p>
+  <ng-container *ngIf="!editingQuote; else editMode">
+    <p>{{ user.quote || "No quote available" }}</p>
+    <button (click)="enterEditMode()">two beer or not to beer</button>
+  </ng-container>
+
+  <ng-template #editMode>
+    <input [(ngModel)]="editedQuote" />
+    <button (click)="saveQuote()">Save Quote</button>
+  </ng-template>
+  <button (click)="toggleAge()">Afficher/Masquer mon age</button>
+</div>
